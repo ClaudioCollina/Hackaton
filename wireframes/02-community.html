@@ -23,6 +23,7 @@
   .game .ic { width: 62px; align-self: stretch; display: flex; align-items: center; justify-content: center; border-right: 2px solid var(--ink); }
   .game .ic.r { background: var(--red); } .game .ic.k { background: var(--ink); } .game .ic.p { background: var(--red-hot); }
   .game .ic svg { width: 30px; height: 30px; stroke: var(--white); }
+  .game .ic img { width: 100%; height: 100%; object-fit: cover; }
   .game .info { flex: 1; }
   .game .name { font-family: var(--display); font-size: 17px; }
   .game .meta { font-size: 11px; color: #444; display: flex; gap: 8px; align-items: center; }
@@ -79,7 +80,7 @@
     <div class="section-title"><span class="display">Open games</span><span class="more">See all &rarr;</span></div>
 
     <div class="card game">
-      <div class="ic r"><svg class="i" viewBox="0 0 24 24"><path d="M8 3c1.3 0 2 1.3 1.5 3-.4 1.4 1.5 3 1.5 6s-1.3 9-3 9-3-6-3-9 1.9-4.6 1.5-6C6 4.3 6.7 3 8 3zM16 3c1.3 0 2 1.3 1.5 3-.4 1.4 1.5 3 1.5 6s-1.3 9-3 9-3-6-3-9 1.9-4.6 1.5-6C14 4.3 14.7 3 16 3z"/></svg></div>
+      <div class="ic r"><img src="assets/game-pins.png" alt="Bowling pins"></div>
       <div class="info">
         <div class="name">marco_b</div>
         <div class="meta"><span>Intermediate &middot; 1/2</span><span>&#9733; 4.7</span></div>
@@ -89,7 +90,7 @@
     </div>
 
     <div class="card game">
-      <div class="ic k"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="10" cy="9" r="1"/><circle cx="14" cy="8.5" r="1"/><circle cx="13" cy="12" r="1"/></svg></div>
+      <div class="ic k"><img src="assets/game-eight-ball.png" alt="Eight ball"></div>
       <div class="info">
         <div class="name">sara_f</div>
         <div class="meta"><span>Beginner &middot; 2/4</span><span>&#9733; 4.9</span></div>
@@ -99,7 +100,7 @@
     </div>
 
     <div class="card game">
-      <div class="ic p"><svg class="i" viewBox="0 0 24 24"><path d="M7 4h10v4a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 13v4M8 21h8M9 17h6"/></svg></div>
+      <div class="ic p"><img src="assets/game-dominoes.png" alt="Dominoes"></div>
       <div class="info">
         <div class="name">luca_300</div>
         <div class="meta"><span>Advanced &middot; 1/2</span><span>&#9733; 4.5</span></div>
