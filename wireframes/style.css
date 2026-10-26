@@ -17,15 +17,29 @@
 
 [onclick] { cursor: pointer; }
 
+/* Reference viewport: iPhone 16 Pro, 402x874 CSS px */
+html, body { width: 100%; height: 100%; }
+
 body {
-  margin: 0; width: 390px; height: 844px; overflow: hidden;
+  margin: 0; height: 100dvh; overflow: hidden;
   font-family: "Segoe UI", Arial, sans-serif; color: var(--ink); background: var(--paper);
+  -webkit-tap-highlight-color: transparent;
 }
 body.dark { background: var(--dark); color: var(--white); }
 body.red { background: var(--red); }
 
-.screen { position: relative; height: 844px; display: flex; flex-direction: column; overflow: hidden; }
-.content { flex: 1; padding: 0 18px; overflow: hidden; }
+.screen { position: relative; height: 100dvh; max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; overflow: hidden; }
+.content {
+  flex: 1; overflow-y: auto; scrollbar-width: none;
+  padding: 0 max(18px, env(safe-area-inset-right)) 12px max(18px, env(safe-area-inset-left));
+}
+.content::-webkit-scrollbar { display: none; }
+
+/* Real touch devices: drop the fake status bar and respect the notch / Dynamic Island */
+@media (pointer: coarse) {
+  .status { display: none; }
+  .screen { padding-top: env(safe-area-inset-top); }
+}
 
 .status {
   height: 44px; flex-shrink: 0; display: flex; justify-content: space-between; align-items: center;
@@ -81,8 +95,8 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 svg.scribble { position: absolute; fill: none; stroke: var(--red); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 
 .nav {
-  height: 76px; flex-shrink: 0; display: flex; align-items: center; background: var(--bg);
-  border-top: 1px solid var(--line); color: #9a9a9a; padding-bottom: 8px;
+  min-height: 76px; flex-shrink: 0; display: flex; align-items: center; background: var(--bg);
+  border-top: 1px solid var(--line); color: #9a9a9a; padding-bottom: max(8px, env(safe-area-inset-bottom));
 }
 .nav div { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 10px; font-weight: 600; }
 .nav svg.i { width: 22px; height: 22px; }

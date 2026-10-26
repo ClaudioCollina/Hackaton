@@ -2,21 +2,35 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#E30613">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="style.css">
 <style>
-  .logo { display: inline-block; background: var(--ink); color: var(--white); font-size: 58px; padding: 8px 14px 4px; transform: rotate(-3deg); margin-top: 26px; box-shadow: 5px 5px 0 var(--white); }
-  .tagline { font-family: var(--display); font-size: 26px; color: var(--white); text-transform: uppercase; line-height: 1; margin-top: 18px; text-shadow: 2px 2px 0 var(--ink); }
-  .loc { display: inline-flex; align-items: center; gap: 6px; background: var(--white); border: 2px solid var(--ink); border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 700; margin-top: 16px; }
-  .auth { display: flex; flex-direction: column; gap: 12px; margin-top: 22px; }
-  .auth .btn { justify-content: flex-start; padding-left: 18px; }
+  .content { overflow: visible; padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
+
+  .logo { display: inline-block; background: var(--ink); color: var(--white); font-size: clamp(44px, 15.5vw, 66px); padding: 8px 14px 4px; transform: rotate(-3deg); margin-top: clamp(14px, 3.5dvh, 34px); box-shadow: 5px 5px 0 var(--white); }
+  .tagline { font-family: var(--display); font-size: clamp(22px, 7vw, 30px); color: var(--white); text-transform: uppercase; line-height: 1; margin-top: clamp(12px, 2.4dvh, 22px); text-shadow: 2px 2px 0 var(--ink); }
+  .loc { display: inline-flex; align-items: center; gap: 6px; background: var(--white); border: 2px solid var(--ink); border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 700; margin-top: clamp(10px, 2dvh, 18px); }
+  .auth { display: flex; flex-direction: column; gap: 12px; margin-top: clamp(14px, 3dvh, 26px); position: relative; z-index: 2; }
+  .auth .btn { justify-content: flex-start; padding: 14px 18px; font-size: 15px; }
   .g { font-weight: 900; font-size: 18px; color: #4285F4; width: 18px; text-align: center; }
-  .or { text-align: center; font-size: 11px; font-weight: 800; color: var(--white); margin: 14px 0 0; letter-spacing: 2px; }
-  .bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 262px; background: var(--paper); clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%); }
-  .ball { position: absolute; left: -30px; bottom: 54px; width: 190px; height: 190px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #444, #111 60%); border: 3px solid var(--ink); }
-  .ball i { position: absolute; width: 18px; height: 18px; border-radius: 50%; background: var(--paper); }
-  .burst { position: absolute; left: 112px; bottom: 150px; width: 92px; height: 92px; background: var(--red-hot); clip-path: polygon(50% 0, 61% 30%, 95% 18%, 73% 46%, 100% 62%, 66% 66%, 72% 100%, 50% 76%, 25% 100%, 32% 66%, 0 62%, 27% 46%, 5% 18%, 39% 30%); }
-  .slogan { position: absolute; right: 22px; bottom: 112px; font-family: var(--hand); font-size: 22px; line-height: 1.05; transform: rotate(-8deg); text-align: right; }
-  .terms { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; font-size: 11px; }
+  .bottom { position: absolute; left: 0; right: 0; bottom: 0; height: clamp(190px, 30dvh, 280px); background: var(--paper); clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%); }
+  .ball { position: absolute; left: -8vw; bottom: calc(50px + env(safe-area-inset-bottom)); width: clamp(140px, 48vw, 210px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #444, #111 60%); border: 3px solid var(--ink); }
+  .ball i { position: absolute; width: 9.5%; aspect-ratio: 1; border-radius: 50%; background: var(--paper); }
+  .burst { position: absolute; left: 29vw; bottom: calc(clamp(140px, 48vw, 210px) + 10px + env(safe-area-inset-bottom)); width: clamp(70px, 24vw, 100px); aspect-ratio: 1; background: var(--red-hot); clip-path: polygon(50% 0, 61% 30%, 95% 18%, 73% 46%, 100% 62%, 66% 66%, 72% 100%, 50% 76%, 25% 100%, 32% 66%, 0 62%, 27% 46%, 5% 18%, 39% 30%); }
+  .slogan { position: absolute; right: 22px; bottom: calc(112px + env(safe-area-inset-bottom)); font-family: var(--hand); font-size: clamp(18px, 5.8vw, 24px); line-height: 1.05; transform: rotate(-8deg); text-align: right; }
+  .wave { right: 30px; bottom: calc(72px + env(safe-area-inset-bottom)); }
+  .terms { position: absolute; left: 0; right: 0; bottom: calc(18px + env(safe-area-inset-bottom)); text-align: center; font-size: 11px; padding: 0 20px; }
+
+  /* Short screens (e.g. iPhone SE) */
+  @media (max-height: 700px) {
+    .tagline br:last-of-type { display: none; }
+    .ball, .burst { display: none; }
+    .slogan { bottom: calc(60px + env(safe-area-inset-bottom)); }
+    .wave { display: none; }
+  }
 </style>
 </head>
 <body class="red">
@@ -39,9 +53,9 @@
 
   <div class="bottom"></div>
   <div class="burst"></div>
-  <div class="ball"><i style="left:58px;top:44px"></i><i style="left:86px;top:36px"></i><i style="left:80px;top:66px"></i></div>
+  <div class="ball"><i style="left:30%;top:23%"></i><i style="left:45%;top:19%"></i><i style="left:42%;top:35%"></i></div>
   <div class="slogan">BUONE PARTITE,<br>PERSONE<br>MIGLIORI</div>
-  <svg class="scribble" style="right:30px;bottom:72px" width="120" height="20" viewBox="0 0 120 20"><path d="M2 12 Q 15 2 28 12 T 54 12 T 80 12 T 106 12 L 118 8"/></svg>
+  <svg class="scribble wave" width="120" height="20" viewBox="0 0 120 20"><path d="M2 12 Q 15 2 28 12 T 54 12 T 80 12 T 106 12 L 118 8"/></svg>
   <div class="terms">Continuando accetti i <b><u>Termini di servizio</u></b> e la <b><u>Privacy</u></b>.</div>
 </div>
 </body>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<!-- Render helper: loads ?p=page.html in an exact iPhone 16 Pro viewport (402x874) -->
+<style>html, body { margin: 0; background: #000; } iframe { display: block; width: 402px; height: 874px; border: 0; }</style>
+</head>
+<body>
+<iframe id="f"></iframe>
+<script>document.getElementById('f').src = new URLSearchParams(location.search).get('p');</script>
+</body>
+</html>
