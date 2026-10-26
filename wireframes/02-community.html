@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="style.css">
 <style>
   .venue { display: flex; gap: 12px; align-items: center; padding: 4px 18px 0; position: relative; }
-  .venue-img { width: 62px; height: 62px; border-radius: 50%; border: 2px solid var(--white); background: repeating-linear-gradient(45deg, #3a3a3a 0 6px, #2a2a2a 6px 12px); flex-shrink: 0; }
+  .venue-img { width: 62px; height: 62px; border-radius: 50%; border: 2px solid var(--white); overflow: hidden; flex-shrink: 0; }
+  .venue-img svg { display: block; width: 100%; height: 100%; }
   .gear { position: absolute; right: 18px; top: 4px; width: 34px; height: 34px; border-radius: 8px; background: var(--dark-2); display: flex; align-items: center; justify-content: center; }
   .venue .sticker { right: 20px; top: 46px; font-size: 15px; }
   .tabs { display: flex; margin: 16px 18px 0; background: var(--dark-2); border-radius: 8px; padding: 3px; }
@@ -39,7 +40,26 @@
   <div class="status"><span>9:41</span><span class="icons"><span class="sig"></span><span class="bat"></span></span></div>
 
   <div class="venue">
-    <div class="venue-img"></div>
+    <div class="venue-img">
+      <svg viewBox="0 0 62 62" role="img" aria-label="Colorful bowling illustration">
+        <defs>
+          <linearGradient id="venue-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#20C4F4"/><stop offset="1" stop-color="#7145D6"/></linearGradient>
+          <linearGradient id="venue-ball" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFE66D"/><stop offset="1" stop-color="#FF7043"/></linearGradient>
+        </defs>
+        <rect width="62" height="62" fill="url(#venue-bg)"/>
+        <path d="M0 48 62 35v27H0z" fill="#FFD166"/>
+        <path d="m0 54 62-13M0 59l62-13" stroke="#FFF3C4" stroke-width="2"/>
+        <g fill="#fff" stroke="#29233E" stroke-width="1.5">
+          <path d="M39 15c0-4 2-7 5-7s5 3 5 7l2 16H37z"/>
+          <path d="M49 21c0-3 1.5-5 3.5-5s3.5 2 3.5 5l1.5 11h-10z"/>
+        </g>
+        <path d="M39 17h10M48 22h8" stroke="#F0445E" stroke-width="3"/>
+        <circle cx="19" cy="37" r="13" fill="url(#venue-ball)" stroke="#29233E" stroke-width="2"/>
+        <circle cx="15" cy="33" r="2" fill="#29233E"/>
+        <circle cx="21" cy="31" r="2" fill="#29233E"/>
+        <circle cx="22" cy="38" r="2" fill="#29233E"/>
+      </svg>
+    </div>
     <div>
       <div class="display" style="font-size:24px">QubicaAMF Bologna</div>
       <div class="display" style="font-size:14px;color:var(--red);margin-top:3px">Bowling &amp; Games</div>
@@ -48,8 +68,6 @@
     <div class="gear"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></div>
     <div class="sticker">You're<br>here!</div>
   </div>
-
-  <div class="tabs"><div class="on">Community</div><div>Events</div><div>Leaderboard</div></div>
 
   <div class="content">
     <div class="card stats">
