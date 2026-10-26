@@ -15,6 +15,8 @@
 
 * { box-sizing: border-box; }
 
+[onclick] { cursor: pointer; }
+
 body {
   margin: 0; width: 390px; height: 844px; overflow: hidden;
   font-family: "Segoe UI", Arial, sans-serif; color: var(--ink); background: var(--paper);
