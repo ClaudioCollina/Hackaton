@@ -1,0 +1,134 @@
+
+
+USE CASE UC-01 - Creazione e partecipazione a una sessione di gioco aperta (Play Now)
+=================================================================================
+
+Obiettivo
+---------
+Permettere a un giocatore presente nel centro di trovare un avversario, ottenere una pista
+prenotata automaticamente, giocare, pagare e lasciare un feedback che aggiorna reputazione e ranking.
+
+Attori
+------
+Primari:
+- Giorgio: giocatore che crea la sessione (host)
+- Giovanni: giocatore che si unisce alla sessione (guest)
+
+Di sistema:
+- App Social Bowling
+- Gestionale del centro (disponibilità e prenotazione piste, pagamenti)
+- Sistema di scoring (acquisizione punteggi della pista)
+
+Secondario:
+- Gestore del centro (configura piste disponibili, tariffe e regole)
+
+Precondizioni
+-------------
+- P1. Il centro aderisce al servizio e ha configurato piste e tariffe disponibili per le sessioni aperte.
+- P2. Giorgio e Giovanni hanno uno smartphone con l'app installata (o accedono via QR code).
+- P3. L'app identifica il centro in cui si trova l'utente (geolocalizzazione o QR code).
+
+Trigger
+-------
+Giorgio, all'interno del centro, apre l'app per cercare una partita.
+
+Flusso principale
+-----------------
+1.  Giorgio si registra (nickname, livello dichiarato, metodo di pagamento) e accetta termini e privacy.
+2.  Il sistema identifica il centro e mostra le sessioni aperte, con: orario, livello, posti liberi,
+    modalità (amichevole/classificata), reputazione dell'host.
+3.  Giorgio non trova sessioni adatte e sceglie "Crea sessione".
+4.  Giorgio imposta i parametri: orario (adesso / orario programmato), numero giocatori, livello
+    richiesto, modalità (amichevole/classificata), visibilità (pubblica/privata).
+5.  Il sistema verifica la disponibilità di una pista per l'orario richiesto, pubblica la sessione
+    e la mostra in attesa di giocatori.
+6.  Giovanni, nel frattempo, si registra (come al passo 1) e visualizza le sessioni aperte.
+7.  Giovanni sceglie la sessione di Giorgio e chiede di partecipare.
+8.  Il sistema aggiunge Giovanni alla sessione e notifica Giorgio.
+9.  Raggiunto il numero di giocatori previsto, il sistema conferma la sessione e prenota la pista
+    sul gestionale del centro.
+10. Giorgio e Giovanni ricevono i dettagli della prenotazione: numero pista, orario, durata,
+    costo stimato, istruzioni di check-in.
+11. Entrambi raggiungono la pista ed effettuano il check-in (QR code sulla pista o conferma in app).
+12. Il sistema associa la partita ai giocatori e il sistema di scoring registra i punteggi.
+13. A fine partita il sistema mostra il riepilogo (punteggi, vincitore) e l'importo dovuto.
+14. Giorgio e Giovanni pagano la propria quota (in app o in cassa).
+15. Il sistema chiede a ciascun giocatore un feedback sull'altro: stelline (1-5) e commento opzionale.
+16. Il sistema aggiorna la reputazione di entrambi (i feedback diventano visibili solo dopo che
+    entrambi li hanno lasciati, o alla scadenza del termine).
+17. Se la sessione è classificata, il sistema aggiorna il ranking di entrambi in base al risultato.
+18. Giovanni chiude l'app; Giorgio torna al passo 2 per cercare una nuova partita.
+
+Flussi alternativi
+------------------
+2a. Nessuna sessione aperta nel centro
+    2a1. Il sistema propone di creare una sessione (passo 4).
+
+5a. Nessuna pista disponibile per l'orario richiesto
+    5a1. Il sistema propone gli orari disponibili più vicini.
+    5a2. Giorgio sceglie un nuovo orario e il flusso riprende dal passo 5, oppure annulla.
+
+5b. Nessun giocatore si unisce entro il tempo massimo di attesa
+    5b1. Il sistema notifica Giorgio e propone: estendere l'attesa, unirsi a un'altra sessione,
+         giocare da solo, annullare.
+
+7a. Giovanni non soddisfa i requisiti della sessione (es. livello)
+    7a1. Il sistema non mostra la sessione o ne impedisce l'adesione indicando il motivo.
+
+7b. Sessione privata o con approvazione dell'host
+    7b1. Giorgio riceve la richiesta e la accetta o la rifiuta.
+    7b2. Se rifiutata, Giovanni viene notificato e torna al passo 6.
+
+8a. Un partecipante annulla prima della conferma (passo 9)
+    8a1. Il posto torna libero e la sessione resta in attesa.
+
+10a. Un partecipante annulla dopo la prenotazione
+    10a1. Il sistema notifica l'altro giocatore e riapre il posto; la pista resta bloccata fino al
+          tempo massimo di attesa definito dal centro, poi la prenotazione viene rilasciata.
+
+11a. Un giocatore non si presenta (no-show) entro il tempo previsto
+    11a1. Il sistema notifica l'altro giocatore e propone: giocare da solo, attendere un nuovo
+          giocatore, annullare.
+    11a2. Il no-show viene registrato e influisce sulla reputazione.
+
+12a. Partita interrotta o punteggi non acquisiti dallo scoring
+    12a1. La partita non viene conteggiata nel ranking; il gestore può validarla manualmente.
+
+14a. Pagamento non riuscito
+    14a1. Il sistema propone un metodo alternativo o il pagamento in cassa.
+
+15a. Segnalazione di comportamento scorretto
+    15a1. Il giocatore segnala l'altro; la segnalazione viene inviata alla moderazione e
+          l'utente può bloccare l'altro giocatore.
+
+15b. Un giocatore non lascia il feedback
+    15b1. Alla scadenza del termine il sistema chiude la finestra di feedback senza penalità.
+
+Postcondizioni
+--------------
+Successo:
+- La pista è stata prenotata, utilizzata e pagata.
+- La partita è registrata e associata ai giocatori.
+- Reputazione e (se classificata) ranking di entrambi sono aggiornati.
+
+Fallimento:
+- Nessuna pista resta bloccata; eventuali preautorizzazioni di pagamento vengono rilasciate.
+- I giocatori sono notificati dell'esito.
+
+Regole di business
+------------------
+- RB1. Il centro definisce quali piste e fasce orarie sono disponibili per le sessioni aperte.
+- RB2. Il centro definisce tariffe e tempo massimo di blocco della pista in attesa dei giocatori.
+- RB3. Il ranking si aggiorna solo per sessioni classificate con punteggi acquisiti dallo scoring.
+- RB4. Il feedback è possibile solo tra giocatori che hanno effettivamente giocato insieme.
+- RB5. Le partite ripetute tra gli stessi giocatori hanno peso ridotto sul ranking (anti-abuso).
+- RB6. I dati personali condivisi sono limitati a nickname, livello e reputazione.
+
+Punti aperti
+------------
+- Pagamento a fine partita o preautorizzazione alla prenotazione?
+- Adesione automatica o approvazione dell'host come default?
+- Algoritmo di ranking: basato su vittoria, punteggio o handicap?
+- Durata della sessione: numero di partite o tempo?
+- Noleggio scarpe e consumazioni incluse nel flusso di pagamento?
+
