@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#161616">
+<title>Game ready - StrikeMate</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .ready { flex: 1; min-height: 0; overflow-y: auto; background: #555; border-top: 3px solid #000; border-radius: 22px 22px 0 0; }
+  .ready-inner { min-height: 100%; display: flex; flex-direction: column; gap: 14px; padding: 14px max(18px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left)); }
+  .back { align-self: flex-start; color: var(--white); font-size: 13px; font-weight: 700; text-decoration: none; min-height: 32px; display: flex; align-items: center; }
+  .headline { font-size: 38px; }
+  .headline em { font-style: normal; color: var(--white); background: var(--red); padding: 0 5px; }
+  .intro { margin: 8px 0 0; font-size: 13px; line-height: 1.4; }
+  .booking { display: flex; align-items: center; gap: 12px; background: var(--ink); border: 2px solid #000; border-radius: 10px; padding: 10px 12px; }
+  .lane { background: var(--red); border: 2px solid var(--white); border-radius: 8px; padding: 4px 10px; text-align: center; }
+  .lane b { display: block; font-family: var(--display); font-size: 30px; font-weight: 400; line-height: 1; }
+  .lane span { font-size: 10px; text-transform: uppercase; font-weight: 800; }
+  .booking p { margin: 0; font-size: 12px; line-height: 1.5; }
+  .section-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+  .section-heading h2 { font-size: 20px; }
+  .section-heading span { font-size: 12px; }
+  .players { list-style: none; margin: 0; padding: 0 12px; }
+  .players li { display: flex; align-items: center; gap: 10px; padding: 10px 0; }
+  .players li + li { border-top: 1px solid #ccc; }
+  .avatar { width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--ink); color: var(--white); font-family: var(--display); font-size: 20px; }
+  .avatar.guest { background: var(--red); }
+  .player-name { flex: 1; min-width: 0; font-size: 13px; overflow-wrap: anywhere; }
+  .player-name small { display: block; margin-top: 2px; color: #555; font-size: 11px; }
+  .joined { font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .instructions h2 { font-size: 24px; }
+  .instructions p { margin: 6px 0 0; font-size: 13px; line-height: 1.4; }
+  .checkin { margin-top: auto; padding: 12px; text-align: center; }
+  .checkin h2 { font-size: 22px; }
+  .checkin img { display: block; width: 144px; height: 144px; margin: 8px auto; background: var(--white); }
+  .checkin p { margin: 0; font-size: 12px; line-height: 1.4; }
+  .checkin small { display: block; margin-top: 5px; font-size: 10px; color: #555; }
+</style>
+</head>
+<body class="dark">
+<div class="screen">
+  <div class="status"><span>9:41</span><span class="icons"><span class="sig"></span><span class="bat"></span></span></div>
+
+  <main class="ready">
+    <div class="ready-inner">
+      <a class="back" href="06-match.html">&larr; Match details</a>
+
+      <header>
+        <h1 class="display headline">Game ready.<br><em>Let's play!</em></h1>
+        <p class="intro">Your group is complete. All players have joined and your lane is booked.</p>
+      </header>
+
+      <section class="booking" aria-label="Booking details">
+        <div class="lane"><b>7</b><span>Lane</span></div>
+        <p><b>Bowling &middot; Today, 6:05 PM</b><br>1 game &middot; Friendly &middot; &euro;6.50 per person</p>
+      </section>
+
+      <section aria-labelledby="players-title">
+        <div class="section-heading">
+          <h2 class="display" id="players-title">Who's playing</h2>
+          <span>2 / 2 joined</span>
+        </div>
+        <ul class="card players">
+          <li>
+            <span class="avatar" aria-hidden="true">G</span>
+            <div class="player-name"><b>giorgio_strike (you)</b><small>Host &middot; Intermediate</small></div>
+            <span class="joined">&#10003; Joined</span>
+          </li>
+          <li>
+            <span class="avatar guest" aria-hidden="true">J</span>
+            <div class="player-name"><b>John</b><small>Intermediate</small></div>
+            <span class="joined">&#10003; Joined</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="instructions" aria-labelledby="next-title">
+        <h2 class="display" id="next-title">Next stop: Lane 7 &rarr;</h2>
+        <p>Complete your check-in using the QR code below, then head to <b>Lane 7</b> to start playing.</p>
+      </section>
+
+      <footer class="card checkin" aria-labelledby="checkin-title">
+        <h2 class="display" id="checkin-title">Your check-in QR code</h2>
+        <img src="assets/checkin-lane-7.svg" alt="Demo check-in QR code for Lane 7, Giorgio and John" width="144" height="144">
+        <p>Show this code at the check-in desk.<br><b>Lane 7 &middot; 2 players</b></p>
+        <small>Demo code &mdash; live check-in is not connected.</small>
+      </footer>
+    </div>
+  </main>
+</div>
+</body>
+</html>
