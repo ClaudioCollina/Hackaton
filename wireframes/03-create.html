@@ -101,9 +101,16 @@
       <div class="opt on" role="radio" tabindex="0" aria-checked="true">Intermediate</div>
       <div class="opt" role="radio" tabindex="0" aria-checked="false">Advanced</div>
     </div>
+
+    <div class="label">When</div>
+    <div class="opts" id="when-opts" role="radiogroup" aria-label="When">
+      <div class="opt on" role="radio" tabindex="0" aria-checked="true">Now</div>
+      <div class="opt" role="radio" tabindex="0" aria-checked="false">In 15 min</div>
+      <div class="opt" role="radio" tabindex="0" aria-checked="false">Choose a time &#9662;</div>
+    </div>
     <script>
-      (function () {
-        var opts = document.querySelectorAll('#skill-opts .opt');
+      document.querySelectorAll('.opts[role="radiogroup"]').forEach(function (group) {
+        var opts = group.querySelectorAll('.opt');
         function select(target) {
           opts.forEach(function (o) {
             var on = o === target;
@@ -118,11 +125,8 @@
             if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(o); }
           });
         });
-      })();
+      });
     </script>
-
-    <div class="label">When</div>
-    <div class="opts"><div class="opt on">Now</div><div class="opt">In 15 min</div><div class="opt">Choose a time &#9662;</div></div>
 
     <div class="label">Notes (optional)</div>
     <div class="note">
