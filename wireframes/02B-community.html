@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#161616">
+<link rel="stylesheet" href="style.css">
+<style>
+  .venue { display: flex; gap: 12px; align-items: center; padding: 4px 18px 0; position: relative; }
+  .venue-img { width: 62px; height: 62px; border-radius: 50%; border: 2px solid var(--white); overflow: hidden; flex-shrink: 0; }
+  .venue-img svg { display: block; width: 100%; height: 100%; }
+  .gear { position: absolute; right: 18px; top: 4px; width: 34px; height: 34px; border-radius: 8px; background: var(--dark-2); display: flex; align-items: center; justify-content: center; }
+  .venue .sticker { right: 20px; top: 46px; font-size: 15px; }
+  .tabs { display: flex; margin: 16px 18px 0; background: var(--dark-2); border-radius: 8px; padding: 3px; }
+  .tabs div { flex: 1; text-align: center; padding: 7px; font-size: 12px; font-weight: 700; border-radius: 6px; color: #bbb; }
+  .tabs .on { background: var(--red); color: var(--white); }
+  .stats { display: flex; padding: 10px 12px; margin-top: 12px; }
+  .stats > div { flex: 1; display: flex; gap: 8px; align-items: center; }
+  .stats > div + div { border-left: 1px solid #ccc; padding-left: 10px; }
+  .stats .n { font-family: var(--display); font-size: 24px; }
+  .stats .t { font-size: 10px; line-height: 1.15; color: #555; }
+  .game { display: flex; align-items: center; gap: 12px; padding: 0 10px 0 0; margin-bottom: 9px; overflow: hidden; height: 64px; }
+  .game .ic { width: 62px; align-self: stretch; display: flex; align-items: center; justify-content: center; border-right: 2px solid var(--ink); }
+  .game .ic.r { background: var(--red); } .game .ic.k { background: var(--red); } .game .ic.p { background: var(--red); }
+  .game .ic svg { width: 30px; height: 30px; stroke: var(--white); }
+  .game .ic img { width: 100%; height: 100%; object-fit: cover; }
+  .game .info { flex: 1; }
+  .game .name { font-family: var(--display); font-size: 17px; }
+  .game .meta { font-size: 11px; color: #444; display: flex; gap: 8px; align-items: center; }
+  .game .meta svg.i { width: 12px; height: 12px; }
+  .people { display: flex; justify-content: space-between; }
+  .person { text-align: center; width: 76px; }
+  .person .av { width: 52px; height: 52px; margin: 0 auto 4px; border-radius: 50%; border: 2px solid var(--white); position: relative; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 22px; }
+  .person .av .dot { position: absolute; right: -1px; bottom: 1px; border: 2px solid var(--dark); width: 12px; height: 12px; }
+  .person b { font-size: 12px; display: block; }
+  .person span { font-size: 10px; color: #aaa; }
+</style>
+</head>
+<body class="dark">
+<div class="screen">
+  <div class="status"><span>9:41</span><span class="icons"><span class="sig"></span><span class="bat"></span></span></div>
+
+  <div class="venue">
+    <div class="venue-img">
+      <svg viewBox="0 0 62 62" role="img" aria-label="Colorful bowling illustration">
+        <defs>
+          <linearGradient id="venue-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#20C4F4"/><stop offset="1" stop-color="#7145D6"/></linearGradient>
+          <linearGradient id="venue-ball" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFE66D"/><stop offset="1" stop-color="#FF7043"/></linearGradient>
+        </defs>
+        <rect width="62" height="62" fill="url(#venue-bg)"/>
+        <path d="M0 48 62 35v27H0z" fill="#FFD166"/>
+        <path d="m0 54 62-13M0 59l62-13" stroke="#FFF3C4" stroke-width="2"/>
+        <g fill="#fff" stroke="#29233E" stroke-width="1.5">
+          <path d="M39 15c0-4 2-7 5-7s5 3 5 7l2 16H37z"/>
+          <path d="M49 21c0-3 1.5-5 3.5-5s3.5 2 3.5 5l1.5 11h-10z"/>
+        </g>
+        <path d="M39 17h10M48 22h8" stroke="#E30613" stroke-width="3"/>
+        <circle cx="19" cy="37" r="13" fill="url(#venue-ball)" stroke="#29233E" stroke-width="2"/>
+        <circle cx="15" cy="33" r="2" fill="#29233E"/>
+        <circle cx="21" cy="31" r="2" fill="#29233E"/>
+        <circle cx="22" cy="38" r="2" fill="#29233E"/>
+      </svg>
+    </div>
+    <div>
+      <div class="display" style="font-size:24px">QubicaAMF Bologna</div>
+      <div class="display" style="font-size:14px;color:var(--red);margin-top:3px">Bowling &amp; Games</div>
+      <div class="muted" style="margin-top:4px">&#9679; Via del Bowling 1, Bologna</div>
+    </div>
+    <div class="gear"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></div>
+    <div class="sticker">You're<br>here!</div>
+  </div>
+
+  <div class="content">
+    <div class="card stats">
+      <div><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c.5-4 11.5-4 12 0M14 15c3-1 7 0 7 4"/></svg><span class="n">14</span><span class="t">people<br>here</span></div>
+      <div><span class="dot green"></span><span class="n">5</span><span class="t">lanes<br>available</span></div>
+      <div>      <span class="dot"></span><span class="n">4</span><span class="t">open<br>games</span></div>
+    </div>
+
+    <div class="section-title"><span class="display">Open games</span><span class="more">See all &rarr;</span></div>
+
+          <div class="card game">
+            <div class="ic r"><img src="assets/game-pins.png" alt="Bowling pins"></div>
+            <div class="info">
+              <div class="name">giorgio_strike (you)</div>
+              <div class="meta"><span>Bowling &middot; Intermediate &middot; 1/2</span><span>&#9733; 4.8</span></div>
+              <div class="meta"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Now</div>
+            </div>
+            <div class="btn join">Edit</div>
+          </div>
+    <div class="card game">
+      <div class="ic r"><img src="assets/game-pins.png" alt="Bowling pins"></div>
+      <div class="info">
+        <div class="name">marco_b</div>
+        <div class="meta"><span>Bowling &middot; Intermediate &middot; 1/2</span><span>&#9733; 4.7</span></div>
+        <div class="meta"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Now</div>
+      </div>
+      <div class="btn join">Join</div>
+    </div>
+
+    <div class="card game">
+      <div class="ic k"><img src="assets/game-eight-ball.png" alt="Eight ball"></div>
+      <div class="info">
+        <div class="name">sara_f</div>
+        <div class="meta"><span>Pool &middot; Beginner &middot; 2/4</span><span>&#9733; 4.9</span></div>
+        <div class="meta"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>In 10 min</div>
+      </div>
+      <div class="btn join">Join</div>
+    </div>
+
+    <div class="card game">
+      <div class="ic p"><img src="assets/game-dominoes.png" alt="Dominoes"></div>
+      <div class="info">
+        <div class="name">luca_300</div>
+        <div class="meta"><span>Cornhole &middot; Advanced &middot; 1/2</span><span>&#9733; 4.5</span></div>
+        <div class="meta"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8:00 PM</div>
+      </div>
+      <div class="btn join">Join</div>
+    </div>
+
+    <div class="section-title" style="margin-top:12px"><span class="display">Players here</span><span class="more">See all &rarr;</span></div>
+    <div class="people">
+      <div class="person"><div class="av" style="background:var(--red)">L<span class="dot green"></span></div><b>Luca</b><span>Looking for a game</span></div>
+      <div class="person"><div class="av" style="background:var(--paper);color:var(--ink)">S<span class="dot green"></span></div><b>Sara</b><span>On lane 4</span></div>
+      <div class="person"><div class="av" style="background:var(--red)">M<span class="dot green"></span></div><b>Mike</b><span>Looking for a game</span></div>
+      <div class="person"><div class="av" style="background:#444">G<span class="dot green"></span></div><b>Giulia</b><span>At the bar</span></div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="on"><svg class="i" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z"/></svg>Home</div>
+    <div><svg class="i" viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>Stats</div>
+    <div class="plus" onclick="location.href='03-create.html'"><img src="assets/create-button.png" alt="Create a new game"></div>
+    <div><svg class="i" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>Chat</div>
+    <div onclick="location.href='04-profile.html'"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 15-5 16 0"/></svg>Profile</div>
+  </div>
+</div>
+</body>
+</html>
