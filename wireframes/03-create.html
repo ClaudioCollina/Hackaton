@@ -95,7 +95,31 @@
     </script>
 
     <div class="label">Skill level</div>
-    <div class="opts"><div class="opt">Any</div><div class="opt">Beginner</div><div class="opt on">Intermediate</div><div class="opt">Advanced</div></div>
+    <div class="opts" id="skill-opts" role="radiogroup" aria-label="Skill level">
+      <div class="opt" role="radio" tabindex="0" aria-checked="false">Any</div>
+      <div class="opt" role="radio" tabindex="0" aria-checked="false">Beginner</div>
+      <div class="opt on" role="radio" tabindex="0" aria-checked="true">Intermediate</div>
+      <div class="opt" role="radio" tabindex="0" aria-checked="false">Advanced</div>
+    </div>
+    <script>
+      (function () {
+        var opts = document.querySelectorAll('#skill-opts .opt');
+        function select(target) {
+          opts.forEach(function (o) {
+            var on = o === target;
+            o.classList.toggle('on', on);
+            o.setAttribute('aria-checked', on);
+          });
+        }
+        opts.forEach(function (o) {
+          o.style.cursor = 'pointer';
+          o.addEventListener('click', function () { select(o); });
+          o.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(o); }
+          });
+        });
+      })();
+    </script>
 
     <div class="label">When</div>
     <div class="opts"><div class="opt on">Now</div><div class="opt">In 15 min</div><div class="opt">Choose a time &#9662;</div></div>
