@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#161616">
+<link rel="stylesheet" href="style.css">
+<style>
+  .top { display: flex; justify-content: space-between; align-items: center; padding: 2px 18px 0; }
+  .top .ib { width: 34px; height: 34px; border-radius: 8px; background: var(--dark-2); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; cursor: pointer; }
+  .title { position: relative; margin-top: 10px; }
+  .title .display { font-size: 42px; }
+  .title .display em { font-style: normal; color: var(--red); }
+  .title .sticker { right: 6px; top: 6px; font-size: 16px; background: var(--paper); color: var(--ink); transform: rotate(8deg); }
+
+  .label { color: #bbb; }
+
+  .host { display: flex; align-items: center; gap: 12px; padding: 8px 10px; margin-top: 18px; }
+  .host .av { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--ink); background: var(--red); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 22px; flex-shrink: 0; }
+  .host .name { font-family: var(--display); font-size: 18px; }
+  .host .meta { font-size: 11px; color: #555; }
+
+  .modes { display: flex; gap: 10px; }
+  .mode { flex: 1; border: 2px solid #000; border-radius: 10px; background: var(--paper); color: var(--ink); padding: 6px; text-align: center; position: relative; }
+  .mode img { width: 40px; height: 32px; display: block; object-fit: contain; margin: 0 auto 2px; }
+  .mode b { font-family: var(--display); font-weight: 400; font-size: 15px; text-transform: uppercase; display: block; }
+  .mode.on { background: var(--red); color: var(--white); box-shadow: 3px 3px 0 var(--paper); }
+  .mode .chk { position: absolute; top: -9px; right: -9px; width: 22px; height: 22px; border-radius: 50%; background: var(--paper); color: var(--ink); border: 2px solid #000; font-size: 12px; font-weight: 900; display: none; align-items: center; justify-content: center; }
+  .mode.on .chk { display: flex; }
+  .mode:not(.on) { opacity: .35; }
+
+  .opt { background: var(--dark-2); color: #ddd; border: 1px solid var(--line); }
+  .opt.on { background: var(--red); color: var(--white); border: 2px solid #000; box-shadow: 2px 2px 0 var(--paper); }
+  .opt:not(.on) { opacity: .35; }
+
+  .slots { display: flex; gap: 8px; align-items: center; }
+  .slot { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 18px; }
+  .slot.taken { background: var(--red); }
+  .slot.free { border-style: dashed; color: #888; }
+  .slots small { font-size: 12px; color: #bbb; margin-left: 4px; }
+
+  .note { border: 1px solid var(--line); border-radius: 8px; background: var(--dark-2); padding: 8px 12px; font-size: 13px; color: #ddd; font-style: italic; }
+
+  .summary { display: flex; padding: 9px 10px; margin: 14px 0 16px; }
+  .summary > div { flex: 1; text-align: center; }
+  .summary > div + div { border-left: 1px solid #ccc; }
+  .summary .n { font-family: var(--display); font-size: 17px; }
+  .summary .t { font-size: 10px; color: #555; }
+
+  .btn.big { background: var(--red); color: var(--white); border-color: #000; box-shadow: 5px 5px 0 var(--paper); cursor: pointer; }
+</style>
+</head>
+<body class="dark">
+<div class="screen">
+  <div class="status"><span>9:41</span><span class="icons"><span class="sig"></span><span class="bat"></span></span></div>
+  <div class="top"><div class="ib" onclick="location.href='02-community.html'">&larr;</div><div class="ib" onclick="location.href='02-community.html'">&times;</div></div>
+
+  <div class="content">
+    <div class="title">
+      <div class="display">Join this<br><em>game?</em></div>
+      <div class="sticker">1 spot<br>left!</div>
+      <svg class="scribble" style="left:0;top:86px" width="250" height="12" viewBox="0 0 250 12"><path d="M2 8 Q 40 2 80 7 T 160 6 T 248 5"/></svg>
+    </div>
+
+    <div class="card host">
+      <div class="av">G</div>
+      <div>
+        <div class="name">giorgio_strike</div>
+        <div class="meta">Host &middot; &#9733; 4.8 &middot; Intermediate</div>
+      </div>
+    </div>
+
+    <div class="label" style="margin-top:20px">Game type</div>
+    <div class="modes" aria-label="Game type">
+      <div class="mode on"><span class="chk" aria-hidden="true">&#10003;</span><img src="assets/game-pins.png" alt="Bowling pins"><b>Bowling</b></div>
+      <div class="mode"><span class="chk" aria-hidden="true">&#10003;</span><img src="assets/game-eight-ball.png" alt="Pool eight ball"><b>Pool</b></div>
+      <div class="mode"><span class="chk" aria-hidden="true">&#10003;</span><img src="assets/game-dominoes.png" alt="Cornhole board and bags"><b>Cornhole</b></div>
+    </div>
+
+    <div class="label">Players</div>
+    <div class="slots" aria-label="1 of 2 players">
+      <div class="slot taken">G</div>
+      <div class="slot free">+</div>
+      <small>1/2 &middot; you'd fill the last spot</small>
+    </div>
+
+    <div class="label">Skill level</div>
+    <div class="opts" aria-label="Skill level">
+      <div class="opt">Any</div>
+      <div class="opt">Beginner</div>
+      <div class="opt on">Intermediate</div>
+      <div class="opt">Advanced</div>
+    </div>
+
+    <div class="label">When</div>
+    <div class="opts" aria-label="When">
+      <div class="opt on">Now</div>
+      <div class="opt">In 15 min</div>
+      <div class="opt">Choose a time</div>
+    </div>
+
+    <div class="label">Notes</div>
+    <div class="note">&ldquo;Looking for someone to practice with...&rdquo;</div>
+
+    <div class="card summary">
+      <div><div class="n"><span class="dot green"></span> Lane 7</div><div class="t">available</div></div>
+      <div><div class="n">&euro;6.50</div><div class="t">per person</div></div>
+      <div><div class="n">20 min</div><div class="t">max wait</div></div>
+    </div>
+
+    <div class="btn big" onclick="location.href='07-gameready.html'">Join game &rarr;</div>
+  </div>
+</div>
+</body>
+</html>
